@@ -176,7 +176,8 @@ class SearchFragment : Fragment() {
                 noticeList.clear()
                 for (document in result) {  // 가져온 문서들은 result에 들어감
                     if (document.getString(option)!!.contains(searchWord)) {
-                        val item = Notice(document["title"] as String, document["date"] as String, document["visited"] as String, document["link"] as String)
+                        val item = Notice(document["title"] as String, document["date"] as String, document["visited"] as String, document["link"] as String,
+                        document["text"] as String)
                         noticeList.add(item)
                     }
                 }
@@ -199,7 +200,8 @@ class SearchFragment : Fragment() {
                 noticeList.clear()
                 for (document in result) {  // 가져온 문서들은 result에 들어감
                     if (document.getString(option)!!.contains(word)) {
-                        val item = Notice(document["title"] as String, document["date"] as String, document["visited"] as String, document["link"] as String)
+                        val item = Notice(document["title"] as String, document["date"] as String, document["visited"] as String,
+                            document["link"] as String, document["text"] as String)
                         noticeList.add(item)
                     }
                 }
