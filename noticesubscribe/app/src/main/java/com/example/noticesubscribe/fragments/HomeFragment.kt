@@ -28,8 +28,7 @@ class HomeFragment : Fragment() {
     //var notice_list = ArrayList<Notice>()
     val keyList = arrayListOf<Keyword>()//첫번째 리스트 아이템 배열(구독키워드)
     val keyadapter = KeyWordAdapter(keyList)//첫번째 리사이클러뷰 어댑터 부르기(구독키워드)
-    val delete_btn = view?.findViewById< ImageView>(R.id.btn_delete2)
-
+    //val delete_btn = view?.findViewById< ImageView>(R.id.btn_delete2)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,7 +55,7 @@ class HomeFragment : Fragment() {
             val intent = Intent(getActivity(), KeywordEditActivity::class.java)
             startActivity(intent)
         }
-        delete_btn?.setVisibility(View.INVISIBLE)
+  //      delete_btn?.setVisibility(View.INVISIBLE)
        // delete_btn?.setVisibility(View.GONE);
 
 //        delete_btn?.setOnClickListener{
@@ -84,6 +83,8 @@ class HomeFragment : Fragment() {
         mBinding?.rvKeyword?.layoutManager = gridLayoutManager
         mBinding?.rvKeyword?.adapter = keyadapter
 
+
+
 //        mBinding?.more?.setOnClickListener {
 //            db.collection("Contacts")
 //                .orderBy("timestamp", Query.Direction.DESCENDING)
@@ -110,10 +111,17 @@ class HomeFragment : Fragment() {
                 (mBinding?.rvHomenotice?.adapter as NoticeAdapter).search(key.text.toString(), searchOption)
             }
         }
+        //새로고침 화면(일단은 전체 공지사항으로 대체)
+        mBinding?.btnRefresh?.setOnClickListener{
+            (mBinding?.rvHomenotice?.adapter as NoticeAdapter).load()
+        }
 
         recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = NoticeAdapter(view.context, notice_list)
+
+        //첫화면 추천사항(일단은 전체 공지사항으로 대체)
+        (mBinding?.rvHomenotice?.adapter as NoticeAdapter).load()
     }
 
     //키워드 클릭시 관련공지사항 나옴
@@ -137,4 +145,19 @@ class HomeFragment : Fragment() {
                 Log.w("MainActivity", "Error getting documents: $exception")
             }
 }
+    //추천키워드 첫화면 및 새로고침 화면, 일단 전체공지로 대체
+    fun NoticeAdapter.load(){
+        db.collection("total")
+            .orderBy("date", Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val item = document.toObject(Notice::class.java)
+                    noticeList.add(item)
+                }
+                notifyDataSetChanged()
+            }.addOnFailureListener {exception->
+                Log.w("MainActivity", "Error getting documents: $exception")
+            }
+    }
 }
