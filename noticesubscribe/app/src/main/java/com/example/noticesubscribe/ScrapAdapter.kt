@@ -22,6 +22,9 @@ class scrapAdapter(val parentContext: Context, val scrapList: ArrayList<Notice>)
         holder.title.text = scrapList.get(position).title
         holder.date.text = scrapList.get(position).date
         holder.visited.text = scrapList.get(position).visited
+        holder.link.text = scrapList.get(position).link
+        holder.text.text = scrapList.get(position).text
+
 
         val innerDb = Room.databaseBuilder(
             parentContext.applicationContext,
@@ -45,6 +48,7 @@ class scrapAdapter(val parentContext: Context, val scrapList: ArrayList<Notice>)
         val date = itemView.findViewById<TextView>(R.id.dateView) // 날짜
         val visited = itemView.findViewById<TextView>(R.id.visitedView) // 조회수
         val link = itemView.findViewById<TextView>(R.id.linkView) // 링크
+        val text = itemView.findViewById<TextView>(R.id.text) //내용
         val btn_scrap = itemView.findViewById<Button>(R.id.bt_keep_button)
 
 
