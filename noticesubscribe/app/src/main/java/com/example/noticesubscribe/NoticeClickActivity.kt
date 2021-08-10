@@ -1,6 +1,7 @@
 package com.example.noticesubscribe
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.renderscript.ScriptGroup
@@ -32,10 +33,20 @@ class NoticeClickActivity : AppCompatActivity() {
 //            Log.d("notnull", "눌이다")
 //
 //        }
+        //다른 엑티비티에서 정보 받아오는 부분
         var titleOfaNotice = intent?.getStringExtra("title")
         var contentOfaNotice = intent?.getStringExtra("Ncontent")
+        var visitedOfaNotice = intent?.getStringExtra("visited")
+        var dateOfaNotice = intent?.getStringExtra("date")
+        var linkOfaNotice = intent?.getStringExtra("link")
         binding.NoticeTitle.text = titleOfaNotice
         binding.NoticeContent.text = contentOfaNotice
+        binding.visited.text = "조회수 : " + visitedOfaNotice
+        binding.date.text = "날짜 : " + dateOfaNotice
+        binding.gotolink.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.skku.edu/skku/campus/skk_comm/notice01.do"+ linkOfaNotice))
+            startActivity (intent, null)
+        }
         //차후에 내용 받아오면 이거 지우면 된다
         //binding.NoticeContent = contentOfaNotice
 

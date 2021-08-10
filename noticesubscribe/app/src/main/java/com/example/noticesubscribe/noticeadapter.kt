@@ -47,7 +47,9 @@ class NoticeAdapter( val parentContext: Context,val noticeList: ArrayList<Notice
             val intent = Intent(parentContext, NoticeClickActivity::class.java).apply {
                 putExtra("title", holder.title.text.toString())
                 putExtra("Ncontent", holder.text.text.toString())
-
+                putExtra("visited", holder.visited.text.toString())
+                putExtra("date", holder.date.text.toString())
+                putExtra("link", holder.link.text.toString())
 //            putExtra("date", holder.date.text)
 //            putExtra("visited", holder.visited.text)
 //            putExtra("link", holder.link.text)
