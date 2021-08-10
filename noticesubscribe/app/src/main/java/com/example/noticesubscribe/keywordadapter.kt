@@ -14,7 +14,7 @@ class KeyWordAdapter (val keyList:ArrayList<Keyword>): RecyclerView.Adapter<KeyW
         fun onClick(view: View, pos:Int)
     }
     var itemClick:ItemClick?=null
-
+    var deleteClick: ItemClick?=null
 
     //ViewHolder객체 만듦
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KeyWordAdapter.ViewHolder {
@@ -35,8 +35,8 @@ class KeyWordAdapter (val keyList:ArrayList<Keyword>): RecyclerView.Adapter<KeyW
         holder.delete.setOnClickListener {v:View->
             keyList.removeAt(position)
             notifyItemRemoved(position)
-            itemClick?.onClick(v,position)
-       }
+            deleteClick?.onClick(v,position)
+        }
     }
 
     override fun getItemCount(): Int {

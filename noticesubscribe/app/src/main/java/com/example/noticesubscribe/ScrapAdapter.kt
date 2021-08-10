@@ -26,6 +26,7 @@ class scrapAdapter(val parentContext: Context, val scrapList: ArrayList<Notice>)
         holder.text.text = scrapList.get(position).text
 
 
+
         val innerDb = Room.databaseBuilder(
             parentContext.applicationContext,
             AppDatabase::class.java, "notice"

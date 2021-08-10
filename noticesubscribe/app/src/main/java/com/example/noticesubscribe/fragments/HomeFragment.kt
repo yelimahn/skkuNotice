@@ -15,6 +15,7 @@ import android.util.Log
 import android.widget.*
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.noticesubscribe.*
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
@@ -29,6 +30,7 @@ class HomeFragment : Fragment() {
     val keyList = arrayListOf<Keyword>()//첫번째 리스트 아이템 배열(구독키워드)
     val keyadapter = KeyWordAdapter(keyList)//첫번째 리사이클러뷰 어댑터 부르기(구독키워드)
     //val delete_btn = view?.findViewById< ImageView>(R.id.btn_delete2)
+    var mDocuments: List<DocumentSnapshot>? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -55,30 +57,22 @@ class HomeFragment : Fragment() {
             val intent = Intent(getActivity(), KeywordEditActivity::class.java)
             startActivity(intent)
         }
-  //      delete_btn?.setVisibility(View.INVISIBLE)
-       // delete_btn?.setVisibility(View.GONE);
 
-//        delete_btn?.setOnClickListener{
-//            delete_btn?.isEnabled=false
-//            delete_btn?.isClickable=false
-//        }
-        //delete_btn?.visibility=View.GONE
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_homenotice)
         val notice_list = arrayListOf<Notice>()
-//        val noticeadapter=NoticeAdapter(view.context, noticeList)
-        //현재의 구독키워드 보여줌
-        db.collection("Contacts")
-            .orderBy("timestamp", Query.Direction.DESCENDING)
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    val item = document.toObject(Keyword::class.java)
-                    keyList.add(item)
-                }
-                keyadapter.notifyDataSetChanged()
-            }.addOnFailureListener { exception ->
-                Log.w("MainActivity", "Error getting documents: $exception")
-            }
+
+//        db.collection("Contacts")
+//            .orderBy("timestamp", Query.Direction.DESCENDING)
+//            .get()
+//            .addOnSuccessListener { documents ->
+//                for (document in documents) {
+//                    val item = document.toObject(Keyword::class.java)
+//                    keyList.add(item)
+//                }
+//                keyadapter.notifyDataSetChanged()
+//            }.addOnFailureListener { exception ->
+//                Log.w("MainActivity", "Error getting documents: $exception")
+//            }
         val gridLayoutManager = GridLayoutManager(view.context, 4)
         mBinding?.rvKeyword?.layoutManager = gridLayoutManager
         mBinding?.rvKeyword?.adapter = keyadapter
@@ -102,7 +96,16 @@ class HomeFragment : Fragment() {
 //            mBinding?.rvKeyword2?.adapter = keyadapter
 //        }
 
-
+        //현재의 구독키워드 보여줌
+        (mBinding?.rvKeyword?.adapter as KeyWordAdapter).getDataFromFirestore()
+        //키워드 삭제
+        keyadapter.deleteClick = object : KeyWordAdapter.ItemClick {
+            override fun onClick(view: View, pos: Int) {
+                when(view.id){
+                    R.id.btn_delete2->itemDelete(mDocuments!!.get(pos))
+                }
+            }
+        }
         //키워드 해당하는 공지사항 찾기
         keyadapter.itemClick = object : KeyWordAdapter.ItemClick {
             override fun onClick(view: View, pos: Int) {
@@ -114,6 +117,7 @@ class HomeFragment : Fragment() {
         //새로고침 화면(일단은 전체 공지사항으로 대체)
         mBinding?.btnRefresh?.setOnClickListener{
             (mBinding?.rvHomenotice?.adapter as NoticeAdapter).load()
+            (mBinding?.rvKeyword?.adapter as KeyWordAdapter).load2()
         }
 
         recyclerView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
@@ -138,14 +142,14 @@ class HomeFragment : Fragment() {
                         noticeList.add(item)
                     }
                 }
-                    notifyDataSetChanged()  // 리사이클러 뷰 갱신
+                notifyDataSetChanged()  // 리사이클러 뷰 갱신
             }
             .addOnFailureListener { exception ->
                 // 실패할 경우
                 Log.w("MainActivity", "Error getting documents: $exception")
             }
-}
-    //추천키워드 첫화면 및 새로고침 화면, 일단 전체공지로 대체
+    }
+    //추천키워드 첫화면 및 새로고침 화면, 일단 전체공지로 대체(공지관련)
     fun NoticeAdapter.load(){
         db.collection("total")
             .orderBy("date", Query.Direction.DESCENDING)
@@ -160,4 +164,50 @@ class HomeFragment : Fragment() {
                 Log.w("MainActivity", "Error getting documents: $exception")
             }
     }
+    //추천키워드 첫화면 및 새로고침 화면, 일단 전체공지로 대체(키워드 관련)
+    fun KeyWordAdapter.load2(){
+        db.collection("Contacts")
+            .orderBy("date", Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val item = document.toObject(Keyword::class.java)
+                    keyList.add(item)
+                }
+                notifyDataSetChanged()
+            }.addOnFailureListener {exception->
+                Log.w("MainActivity", "Error getting documents: $exception")
+            }
+    }
+
+    //삭제관련 데이터(파이어베이스상의 키워드의 위치를 알기위해)
+    fun KeyWordAdapter.getDataFromFirestore() {
+        db.collection("Contacts")
+            .orderBy("timestamp", Query.Direction.DESCENDING)
+            .addSnapshotListener{ snapshot, exception ->
+                if (exception != null) {
+                }
+                else {
+                    if (snapshot != null) {
+                        if (!snapshot.isEmpty) {
+                            keyList.clear()
+                            mDocuments = snapshot.documents
+                            val documents = snapshot.documents
+                            for (document in documents) {
+                                val item = Keyword(document["key"] as String)
+                                keyList.add(item)
+                            }
+                            notifyDataSetChanged()
+                        }
+                    }
+                }
+            }
+    }
+    //키워드삭제
+    fun itemDelete(doc: DocumentSnapshot){
+        db.collection("Contacts").document(doc.id)
+            .delete()
+
+    }
+
 }

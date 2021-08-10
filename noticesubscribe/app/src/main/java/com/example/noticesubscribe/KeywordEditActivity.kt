@@ -30,7 +30,7 @@ class KeywordEditActivity : AppCompatActivity() {
     val keyadapter = KeyWordAdapter(keyList)//첫번째 리사이클러뷰 어댑터 부르기(구독키워드)
     var mDocuments: List<DocumentSnapshot>? = null
 
-//    출처: https://duckssi.tistory.com/42 [홍드로이드의 야매코딩]
+    //    출처: https://duckssi.tistory.com/42 [홍드로이드의 야매코딩]
     override fun onDestroy() { // onDestroy 에서 binding class 인스턴스 참조를 정리해주어야 한다.
         mainbinding = null
         super.onDestroy()
@@ -124,7 +124,7 @@ class KeywordEditActivity : AppCompatActivity() {
 
         //키워드 삭제
         (mainbinding?.rvKeyword?.adapter as KeyWordAdapter).getDataFromFirestore()
-        keyadapter.itemClick = object : KeyWordAdapter.ItemClick {
+        keyadapter.deleteClick =object: KeyWordAdapter.ItemClick, HistoryAdapter.ItemClick {
             override fun onClick(view: View, pos: Int) {
                 when(view.id){
                     R.id.btn_delete2->itemDelete(mDocuments!!.get(pos))
@@ -136,7 +136,7 @@ class KeywordEditActivity : AppCompatActivity() {
             val input = mainbinding?.keywordinput
             input?.getText()?.clear()
         }
-   }
+    }
 
     //
     // 키워드 삭제 관련부분 참고사이트: https://stackoverflow.com/questions/64370610/android-kotlin-how-can-i-delete-the-data-from-firebase
@@ -166,9 +166,9 @@ class KeywordEditActivity : AppCompatActivity() {
         db.collection("Contacts").document(doc.id)
             .delete()
 
-            }
+    }
 
-   }
+}
 
 
 //        출처: https://duckssi.tistory.com/42 [홍드로이드의 야매코딩]}

@@ -37,6 +37,7 @@ class NoticeAdapter( val parentContext: Context,val noticeList: ArrayList<Notice
         holder.visited.text = noticeList.get(position).visited
         holder.link.text = noticeList.get(position).link
         holder.text.text = noticeList.get(position).text
+        holder.scrap.hint = noticeList.get(position).scrap
         holder.itemView.setOnClickListener {
 //            여기 아래 3줄은 크롬으로 바로 창을 여는 코드이다
 //            Log.d("noticeadapter", "여기에서의 명령을 실행한거")
@@ -50,6 +51,7 @@ class NoticeAdapter( val parentContext: Context,val noticeList: ArrayList<Notice
                 putExtra("visited", holder.visited.text.toString())
                 putExtra("date", holder.date.text.toString())
                 putExtra("link", holder.link.text.toString())
+                putExtra("scrap", holder.scrap.hint.toString())
 //            putExtra("date", holder.date.text)
 //            putExtra("visited", holder.visited.text)
 //            putExtra("link", holder.link.text)
@@ -71,8 +73,29 @@ class NoticeAdapter( val parentContext: Context,val noticeList: ArrayList<Notice
         ).allowMainThreadQueries().build()
 
         holder.scrap.setOnClickListener {
+            when (holder.scrap.hint){
+                //스크랩이 안된 상태에서 버튼을 눌렸을 때
+                "0" -> {
+                    //스크랩의 상태가 "1"이 된다
+                    holder.scrap.hint = "1"
+                    //채워진 이미지로 바뀐다
+                    //@drawable/kept_button가 채워진 이미지
+                    holder.scrap.setBackgroundResource(R.drawable.kept_button)
+                    //scrap의 db에 추가한다
+                }
+                //스크랩이 된 상태에서 버튼을 눌렀을 때
+                "1" -> {
+                    //스크랩의 상태가 "0"이 된다
+                    holder.scrap.hint = "0"
+                    //빈 이미지로 바뀐다
+                    //@drawable/keep_button가 빈 이미지
+                    holder.scrap.setBackgroundResource(R.drawable.keep_button)
+
+                    //scrap의 db에서 제거한다
+                }
+
+            }
             innerDb.noticeDao().insert(noticeList.get(position))
-            holder.scrap.isSelected = holder.scrap.isSelected != true
         }
 
     }
@@ -82,12 +105,12 @@ class NoticeAdapter( val parentContext: Context,val noticeList: ArrayList<Notice
     }
 
     class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val title = itemView.findViewById<TextView>(R.id.titleView) // 제목
-        val date = itemView.findViewById<TextView>(R.id.dateView) // 날짜
-        val visited = itemView.findViewById<TextView>(R.id.visitedView) // 조회수
-        val link = itemView.findViewById<TextView>(R.id.linkView) // 링크
-        val scrap = itemView.findViewById<Button>(R.id.bt_keep_button)
-        val text = itemView.findViewById<TextView>(R.id.text) //내용
+        var title = itemView.findViewById<TextView>(R.id.titleView) // 제목
+        var date = itemView.findViewById<TextView>(R.id.dateView) // 날짜
+        var visited = itemView.findViewById<TextView>(R.id.visitedView) // 조회수
+        var link = itemView.findViewById<TextView>(R.id.linkView) // 링크
+        var scrap = itemView.findViewById<Button>(R.id.bt_keep_button)
+        var text = itemView.findViewById<TextView>(R.id.text) //내용
     }
 
 
