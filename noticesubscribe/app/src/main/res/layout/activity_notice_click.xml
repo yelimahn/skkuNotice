@@ -16,6 +16,7 @@
             android:id="@+id/NoticeTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:background="#FFFFFF"
             android:gravity="center"
             android:hint="제목이 위치할 곳"
@@ -24,6 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -31,19 +33,21 @@
             <TextView
                 android:id="@+id/visited"
 
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:hint="날짜" />
 
             <TextView
                 android:id="@+id/date"
-                android:hint="조회수"
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="조회수" />
 
         </LinearLayout>
 
@@ -56,9 +60,13 @@
             android:layout_marginLeft="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
+            android:drawablePadding="?android:attr/buttonCornerRadius"
             android:insetLeft="0dp"
             android:insetRight="0dp"
-            android:text="링크로 이동하기" />
+            android:padding="5dp"
+            android:text="링크로 이동하기"
+            android:textColor="#000000"
+            app:backgroundTint="#FFFFFF" />
 
         <TextView
             android:id="@+id/NoticeContent"

@@ -54,6 +54,10 @@ class KeywordEditActivity : AppCompatActivity() {
 //            }
         //(mainbinding?.rvKeyword?.adapter as KeyWordAdapter).getDataFromFirestore()
         //키워드 추가부분
+        mainbinding?.btnBacktohome?.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
         mainbinding?.btnAddkeyword?.setOnClickListener {
             val input = binding.keywordinput
             val input_tostring = input.text.toString()

@@ -41,9 +41,9 @@
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_refresh"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titlebar"
             app:srcCompat="@drawable/text_subscribedkeyword" />
@@ -52,10 +52,10 @@
             android:id="@+id/btn_refresh"
             android:layout_width="26dp"
             android:layout_height="29dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="20dp"
             android:src="@drawable/reload"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.105"
+            app:layout_constraintHorizontal_bias="0.075"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
             app:layout_constraintTop_toBottomOf="@+id/titlebar" />
 
@@ -63,17 +63,20 @@
             android:id="@+id/rv_keyword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_refresh" />
 
         <Button
             android:id="@+id/bt_editKeyword"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:text="키워드편집하기"
+            android:textColor="#675E56"
+            app:backgroundTint="#E5F1E2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rv_keyword" />
@@ -82,6 +85,7 @@
             android:id="@+id/rv_homenotice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_editKeyword" />
