@@ -60,7 +60,6 @@
             android:layout_marginLeft="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:drawablePadding="?android:attr/buttonCornerRadius"
             android:insetLeft="0dp"
             android:insetRight="0dp"
             android:padding="5dp"
