@@ -60,7 +60,25 @@ class SearchFragment : Fragment() {
         var searchOption = "title"
         val searchOption2 = "history"
 
-
+        //스피너 (제목,키워드) 생성
+        mBinding?.spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when (mBinding?.spinner?.getItemAtPosition(position)) {
+                    "제목" -> {
+                        searchOption = "title"
+                    }
+                    "내용" -> {
+                        searchOption = "text"
+                    }
+                }
+            }
+        }
 
 
         //검색버튼 클릭시
