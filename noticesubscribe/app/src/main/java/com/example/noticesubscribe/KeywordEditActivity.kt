@@ -90,7 +90,7 @@ class KeywordEditActivity : AppCompatActivity() {
                         .add(data2)
                         .addOnSuccessListener { documentReference ->
                             // 성공할 경우
-                            Toast.makeText(this, "키워드가 추가되었습니다", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "키워드 추가 완료", Toast.LENGTH_SHORT).show()
                             //itemSort(mDocuments!!.(data2))
                             db.collection("Contacts")//작업할 컬렉션
                                 .orderBy("timestamp", Query.Direction.DESCENDING)
@@ -138,6 +138,7 @@ class KeywordEditActivity : AppCompatActivity() {
             override fun onClick(view: View, pos: Int) {
                 when(view.id){
                     R.id.btn_delete2->itemDelete(mDocuments!!.get(pos))
+
                 }
             }
         }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 
@@ -24,6 +25,8 @@ class scrapAdapter(val parentContext: Context, val scrapList: ArrayList<Notice>)
         holder.visited.text = scrapList.get(position).visited
         holder.link.text = scrapList.get(position).link
         holder.text.text = scrapList.get(position).text
+        holder.btn_scrap.setBackgroundResource(R.drawable.kept_button)
+
 
 
 
@@ -36,6 +39,8 @@ class scrapAdapter(val parentContext: Context, val scrapList: ArrayList<Notice>)
             innerDb.noticeDao().delete(scrapList.get(position))
             scrapList.remove(scrapList.get(position))
             notifyDataSetChanged()
+            Toast.makeText(parentContext, "스크랩 취소", Toast.LENGTH_SHORT).show()
+
         }
     }
 

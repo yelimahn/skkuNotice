@@ -60,25 +60,7 @@ class SearchFragment : Fragment() {
         var searchOption = "title"
         val searchOption2 = "history"
 
-        //스피너 (제목,키워드) 생성
-        mBinding?.spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                when (mBinding?.spinner?.getItemAtPosition(position)) {
-                    "제목" -> {
-                        searchOption = "title"
-                    }
-                    "키워드" -> {
-                        searchOption = "keyword"
-                    }
-                }
-            }
-        }
+
 
 
         //검색버튼 클릭시
@@ -90,17 +72,25 @@ class SearchFragment : Fragment() {
                 (input?.length()!! <= 1 || input.length() >= 11) -> {
                     Toast.makeText(getContext(), "2글자 이상 10글자 이하로 검색어를 입력해주세요", Toast.LENGTH_SHORT).show()
                 }
-                (input_ToHistory in historylist) -> {
-                    Toast.makeText(getContext(), "이미 등록된 검색어입니다", Toast.LENGTH_SHORT).show()
-                    //(mBinding?.rvSearchhistory?.adapter as HistoryAdapter).getDataFromFirestore()
-                    //itemDelete(mDocuments!!)
-                }
+
                 else -> {
-                    //searchword에서 문자열을 가져와 hashMap으로 만듦
-                    val data = hashMapOf("history" to input?.text?.toString(), "timestamp" to FieldValue.serverTimestamp())//검색 옵션에 따라 검색
-                    (mBinding?.rvSearchnotice?.adapter as NoticeAdapter).search2(mBinding?.searchWord?.text.toString(), searchOption)
-                    //검색어 기록
-                    (mBinding?.rvSearchhistory?.adapter as HistoryAdapter).search3(data, searchOption2)
+                    if (input_ToHistory in historylist){
+//                        Toast.makeText(getContext(), "이미 등록된 검색어입니다", Toast.LENGTH_SHORT).show()
+                        //그냥 검색만
+                        (mBinding?.rvSearchnotice?.adapter as NoticeAdapter).search2(mBinding?.searchWord?.text.toString(), searchOption)
+                        mBinding?.searchWord?.text = null
+                        Toast.makeText(getContext(), "검색 완료", Toast.LENGTH_SHORT).show()
+                    } else{
+                        //searchword에서 문자열을 가져와 hashMap으로 만듦
+                            //검색하고
+                        val data = hashMapOf("history" to input?.text?.toString(), "timestamp" to FieldValue.serverTimestamp())//검색 옵션에 따라 검색
+                        (mBinding?.rvSearchnotice?.adapter as NoticeAdapter).search2(mBinding?.searchWord?.text.toString(), searchOption)
+                        //검색어 기록
+                        (mBinding?.rvSearchhistory?.adapter as HistoryAdapter).search3(data, searchOption2)
+                        mBinding?.searchWord?.text = null
+                        Toast.makeText(getContext(), "검색 완료", Toast.LENGTH_SHORT).show()
+                    }
+
                 }
             }
         }

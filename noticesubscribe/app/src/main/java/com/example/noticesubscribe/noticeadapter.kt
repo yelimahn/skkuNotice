@@ -86,7 +86,8 @@ class NoticeAdapter( val parentContext: Context,val noticeList: ArrayList<Notice
                     holder.scrap.setBackgroundResource(R.drawable.kept_button)
                     //scrapedNotices의 오브잭트인 scrapedNotices.scrapedNoticesArray에 추가한다
                     scrapedNotices.scrapedNoticesArray.add(noticeList.get(position))
-                    Toast.makeText(parentContext, "${itemCount}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(parentContext, "스크랩 완료", Toast.LENGTH_SHORT).show()
+
 
                 }
                 //스크랩이 된 상태에서 버튼을 눌렀을 때
@@ -99,6 +100,7 @@ class NoticeAdapter( val parentContext: Context,val noticeList: ArrayList<Notice
 
                     //scrap의 db에서 제거한다
                     scrapedNotices.scrapedNoticesArray.remove(noticeList.get(position))
+                    Toast.makeText(parentContext, "스크랩 취소", Toast.LENGTH_SHORT).show()
 
                 }
 

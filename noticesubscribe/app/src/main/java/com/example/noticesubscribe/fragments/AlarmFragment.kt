@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.noticesubscribe.MyFirebaseMessagingService
 import com.example.noticesubscribe.R
@@ -47,11 +48,16 @@ class AlarmFragment : Fragment() {
         mBinding?.switch1?.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 Log.d("switch", "스위치가 체크")
+
                 saveData()
                 MyFirebaseMessagingService()
+                Toast.makeText(context, "알림 설정 완료", Toast.LENGTH_SHORT).show()
+
             } else {
                 Log.d("switch", "스위치가 해제")
                 saveData()
+                Toast.makeText(context, "알림 설정 취소", Toast.LENGTH_SHORT).show()
+
             }
         }
     }
