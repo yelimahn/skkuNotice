@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/NoticeTitle"
             android:layout_width="match_parent"
@@ -19,7 +20,7 @@
             android:gravity="center"
             android:hint="제목이 위치할 곳"
             android:textColor="@color/black"
-            android:textSize="32sp"
+            android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -51,16 +52,26 @@
             android:id="@+id/gotolink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:insetLeft="0dp"
+            android:insetRight="0dp"
             android:text="링크로 이동하기" />
 
         <TextView
             android:id="@+id/NoticeContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:background="#FFFFFF"
             android:hint="내용이 위치할 곳"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
