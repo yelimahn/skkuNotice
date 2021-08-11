@@ -3,8 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/allnotice_icon.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/bell_button.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/home_button.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/ic_launcher_background.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/icon_time.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/keep_button.xml" value="0.16875" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/mag_button.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/mag_icon.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/nev_bar.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/notice_bg.xml" value="1.196875" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/notused2.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/notused3.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/orangebell.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/scribetab.xml" value="0.16875" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/search_.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/selectedhomebutton.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/subscribe_button.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/toggle_button.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/unused2.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/up_square.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/where_the_page_name_has_to_be.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/drawable/whitemag.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/layout/activity_keyword_edit.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/layout/activity_notice_click.xml" value="0.4" />
@@ -16,6 +37,9 @@
         <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/layout/history_item.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/layout/key_item.xml" value="0.4" />
         <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/layout/list_item.xml" value="0.4" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Kang/Desktop/skkuNotice/noticesubscribe/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.19947916666666668" />
       </map>
     </option>
   </component>
