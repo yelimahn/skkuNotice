@@ -23,7 +23,7 @@
         android:id="@+id/titletext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="검색"
+        android:text="전체 공지사항에서 검색"
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -51,15 +51,14 @@
 
     <EditText
         android:id="@+id/searchWord"
-        android:layout_width="328dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="346dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/box_addkeywordbox"
         android:hint="search"
         android:inputType="text"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.807"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titlebar" />
 
@@ -75,21 +74,10 @@
         app:layout_constraintTop_toTopOf="@+id/searchWord"
         app:layout_constraintVertical_bias="0.571" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="57dp"
-        android:layout_height="43dp"
-        android:background="@drawable/box_selectbox"
-        android:entries="@array/my_array"
-        app:layout_constraintBottom_toBottomOf="@+id/searchWord"
-        app:layout_constraintEnd_toStartOf="@+id/searchWord"
-        app:layout_constraintTop_toTopOf="@+id/searchWord"
-        app:layout_constraintVertical_bias="0.0" />
-
     <Button
         android:id="@+id/button"
-        android:layout_width="53dp"
-        android:layout_height="54dp"
+        android:layout_width="75dp"
+        android:layout_height="72dp"
         android:layout_marginStart="290dp"
         android:layout_marginLeft="290dp"
         android:layout_marginTop="4dp"
