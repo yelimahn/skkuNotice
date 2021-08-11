@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
@@ -72,6 +73,8 @@ class NoticeAdapter( val parentContext: Context,val noticeList: ArrayList<Notice
             AppDatabase::class.java, "notice"
         ).allowMainThreadQueries().build()
 
+
+        //스크랩 버튼을 눌렀을 때
         holder.scrap.setOnClickListener {
             when (holder.scrap.hint){
                 //스크랩이 안된 상태에서 버튼을 눌렸을 때
@@ -81,7 +84,10 @@ class NoticeAdapter( val parentContext: Context,val noticeList: ArrayList<Notice
                     //채워진 이미지로 바뀐다
                     //@drawable/kept_button가 채워진 이미지
                     holder.scrap.setBackgroundResource(R.drawable.kept_button)
-                    //scrap의 db에 추가한다
+                    //scrapedNotices의 오브잭트인 scrapedNotices.scrapedNoticesArray에 추가한다
+                    scrapedNotices.scrapedNoticesArray.add(noticeList.get(position))
+                    Toast.makeText(parentContext, "${itemCount}", Toast.LENGTH_SHORT).show()
+
                 }
                 //스크랩이 된 상태에서 버튼을 눌렀을 때
                 "1" -> {
@@ -92,6 +98,8 @@ class NoticeAdapter( val parentContext: Context,val noticeList: ArrayList<Notice
                     holder.scrap.setBackgroundResource(R.drawable.keep_button)
 
                     //scrap의 db에서 제거한다
+                    scrapedNotices.scrapedNoticesArray.remove(noticeList.get(position))
+
                 }
 
             }

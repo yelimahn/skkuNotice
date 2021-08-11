@@ -35,6 +35,7 @@ class KeywordEditActivity : AppCompatActivity() {
         mainbinding = null
         super.onDestroy()
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainbinding = ActivityKeywordEditBinding.inflate(layoutInflater)
@@ -65,6 +66,11 @@ class KeywordEditActivity : AppCompatActivity() {
                 // 오류가 나는 두번째 조건
                 (inputToKeyword in keyList) -> {
                     Toast.makeText(this, "이미 등록된 키워드입니다", Toast.LENGTH_SHORT).show()
+
+                }
+                // 오류가 나는 세번째 조건
+                (isProbablyKorean(input_tostring) != true) -> {
+                    Toast.makeText(this, "키워드는 한글로만 입력해주세요", Toast.LENGTH_SHORT).show()
 
                 }
 
@@ -169,8 +175,15 @@ class KeywordEditActivity : AppCompatActivity() {
     }
 
 }
-
-
-//        출처: https://duckssi.tistory.com/42 [홍드로이드의 야매코딩]}
+fun isProbablyKorean(s: String): Boolean {
+    var i = 0
+    while (i < s.length) {
+        val c = s.codePointAt(i)
+        if ((c in 0xAC00..0xD800) == false)
+            return false
+        i += Character.charCount(c)
+    }
+    return true
+}
 
 

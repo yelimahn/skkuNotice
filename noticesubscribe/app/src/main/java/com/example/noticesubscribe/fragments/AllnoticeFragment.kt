@@ -55,6 +55,7 @@ class AllnoticeFragment : Fragment() {
         (mBinding?.rvAllnotice?.adapter as NoticeAdapter).load()//전체 공지사항 보이기
 
 
+
     }
     //전체공지사항 보이기
     fun NoticeAdapter.load(){
