@@ -151,7 +151,7 @@ class HomeFragment : Fragment() {
     }
     //추천키워드 첫화면 및 새로고침 화면, 일단 전체공지로 대체(공지관련)
     fun NoticeAdapter.load(){
-        db.collection("total")
+        db.collection("recommend")
             .orderBy("date", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { documents ->
